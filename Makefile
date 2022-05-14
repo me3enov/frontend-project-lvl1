@@ -8,4 +8,5 @@ publish:
 	npm publish --dry-run
 
 lint:
+	make install
 	npx eslint .
