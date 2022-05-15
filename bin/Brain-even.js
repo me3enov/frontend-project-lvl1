@@ -1,98 +1,29 @@
-export default class Even {
-  // constructor for the "Even" class
-  constructor({
-    name,
-    printMessage,
-    requestUserString,
-    questionsText,
-    evenGameText,
-    startLevel,
-    endLevel,
-    difficulty,
-  }) {
-    // username
-    this._name = name;
+// IMPORT MODULES START
+import Even from '../src/Even.js';
 
-    // functions for "Even" class (bin/brain-games)
-    this._printMessage = printMessage;
-    this._requestUserString = requestUserString;
+import {
+  userName,
+  requestUserString,
+  printMessage,
+} from './brain-games.js';
 
-    // text for games (src/unils/constants) questionsText
-    this._questionText = questionsText.questionText;
-    this._answerText = questionsText.answerText;
-    this._tryAgainText = questionsText.tryAgainText;
-    this._goodAnswerText = questionsText.goodAnswerText;
-    this._winText = questionsText.winText;
-    this._correctly = questionsText.correctly;
-    this._wrong = questionsText.wrong;
+import {
+  questionsText,
+  evenGameText,
+} from '../src/utils/constants.js';
+// IMPORT MODULES END
 
-    // text for games (src/unils/constants) questionsText
-    this._descriptionGameText = evenGameText.descriptionGameText;
-    this._badAnswerText = evenGameText.badAnswerText;
+// is even game init
+const evenGame = new Even({
+  userName,
+  printMessage,
+  requestUserString,
+  questionsText,
+  evenGameText,
+  startLevel: 0,
+  endLevel: 3,
+  difficulty: 100,
+});
 
-    // set start level
-    this._startLevel = startLevel;
-    // set end level
-    this._endLevel = endLevel;
-    // set start difficulty
-    this._difficulty = difficulty;
-  }
-
-  // get random number 0 or N (N < max)
-  _getRandomInt = () => Math.floor(Math.random() * this._difficulty);
-
-  // get correct answer - number is even ?
-  _isEven = () => this._randomNumber % 2 === 0;
-
-  // check user answer
-  _checkAnswer = () => this._correctAnswer === this._userAnswer;
-
-  // check user answer
-  _checkEndGame = () => this._startLevel === this._endLevel;
-
-  // level successfully completed
-  _levelCompleted() {
-    this._printMessage(this._goodAnswerText);
-    this._startLevel += 1;
-    this._difficulty *= 10;
-  }
-
-  // level failed, game over!
-  _levelFailed() {
-    this._printMessage(`'${this._userAnswer}'${this._badAnswerText}'${this._correctAnswer}'.\n${this._tryAgainText}${this._name}`);
-    this._startLevel = 4;
-  }
-
-  // game successfully completed
-  _gameCompleted() {
-    this._printMessage(`${this._winText}${this._name}`);
-  }
-
-  // start game
-  startEvenGame() {
-    // print game description
-    this._printMessage(this._descriptionGameText);
-
-    // main logig game
-    for (; this._startLevel < this._endLevel;) {
-      // get random number
-      this._randomNumber = this._getRandomInt();
-
-      // get correct answer
-      this._correctAnswer = this._isEven() ? this._correctly : this._wrong;
-
-      // print question
-      this._printMessage(`${this._questionText}${this._randomNumber}`);
-
-      // print request answer
-      this._userAnswer = this._requestUserString.question(this._answerText);
-
-      // check user answer
-      if (this._checkAnswer()) this._levelCompleted();
-      else this._levelFailed();
-    }
-
-    // game successfully completed
-    if (this._checkEndGame()) this._gameCompleted();
-  }
-}
+// start game
+evenGame.startEvenGame();
