@@ -5,7 +5,7 @@ export default class Even {
     printMessage,
     requestUserString,
     questionsText,
-    evenGameText,
+    wrongAnswerText,
     startLevel,
     endLevel,
     difficulty,
@@ -27,8 +27,8 @@ export default class Even {
     this._wrong = questionsText.wrong;
 
     // text for games (src/unils/constants) questionsText
-    this._descriptionGameText = evenGameText.descriptionGameText;
-    this._badAnswerText = evenGameText.badAnswerText;
+    this._descriptionGameText = wrongAnswerText.descriptionGameText;
+    this._badAnswerText = wrongAnswerText.badAnswerText;
 
     // set start level
     this._startLevel = startLevel;

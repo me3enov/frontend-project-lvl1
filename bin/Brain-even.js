@@ -9,7 +9,7 @@ import {
 
 import {
   questionsText,
-  evenGameText,
+  wrongAnswerText,
 } from '../src/utils/constants.js';
 // IMPORT MODULES END
 
@@ -19,7 +19,7 @@ const evenGame = new Even({
   printMessage,
   requestUserString,
   questionsText,
-  evenGameText,
+  wrongAnswerText,
   startLevel: 0,
   endLevel: 3,
   difficulty: 100,

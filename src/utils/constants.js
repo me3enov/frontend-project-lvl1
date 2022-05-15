@@ -22,7 +22,7 @@ export const questionsText = {
   wrong: 'no',
 };
 
-export const evenGameText = {
+export const wrongAnswerText = {
   descriptionGameText: `Answer "${questionsText.correctly}" if the number is even, otherwise answer "${questionsText.wrong}".`,
   badAnswerText: ' is wrong answer ;(. Correct answer was ',
 };
