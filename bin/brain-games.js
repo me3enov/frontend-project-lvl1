@@ -14,11 +14,11 @@ import {
 
 // constants games
 const { gameName, welcomeText } = gamesText;
-export const requestUserString = readlineSync;
+const requestUserString = readlineSync;
 const start = `${gameName}\n${welcomeText}`;
 
 // functions games
-export const printMessage = (string) => console.log(string);
+const printMessage = (string) => console.log(string);
 const getUserName = (question) => requestUserString.question(question);
 
 // user name init
@@ -31,5 +31,11 @@ const initUser = new Cli({
 // start
 printMessage(start);
 // get username
-export const userName = initUser.initUser();
+const userName = initUser.initUser();
 user.name = userName;
+
+export {
+  requestUserString,
+  printMessage,
+  userName,
+};
