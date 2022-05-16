@@ -18,11 +18,15 @@ export const questionsText = {
   tryAgainText: 'Let\'s try again, ',
   goodAnswerText: 'Correct!',
   winText: 'Congratulations, ',
+  badAnswerText: ' is wrong answer ;(. Correct answer was ',
   correctly: 'yes',
   wrong: 'no',
 };
 
-export const wrongAnswerText = {
+export const evenGameText = {
   descriptionGameText: `Answer "${questionsText.correctly}" if the number is even, otherwise answer "${questionsText.wrong}".`,
-  badAnswerText: ' is wrong answer ;(. Correct answer was ',
+};
+
+export const calcGameText = {
+  descriptionGameText: 'What is the result of the expression?',
 };

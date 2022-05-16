@@ -1,5 +1,5 @@
 // IMPORT MODULES START
-import Even from '../src/games/Even.js';
+import Calc from '../src/games/Calc.js';
 
 import {
   userName,
@@ -9,24 +9,24 @@ import {
 
 import {
   questionsText,
-  evenGameText,
+  calcGameText,
 } from '../src/utils/constants.js';
 // IMPORT MODULES END
 
 // is even game init
-const evenGame = new Even({
+const calcGame = new Calc({
   userName,
   printMessage,
   requestUserString,
   questionsText,
-  futuresGameText: evenGameText,
+  futuresGameText: calcGameText,
   level: 0,
   endLevel: 3,
   // difficulty = max random number
-  difficulty: 100,
+  difficulty: 10,
   // difficultyStep = number growth to the next level (difficulty * difficultyStep)
-  difficultyStep: 10,
+  difficultyStep: 2,
 });
 
 // start game
-evenGame.gameInit();
+calcGame.gameInit();

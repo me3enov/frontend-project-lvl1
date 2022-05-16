@@ -1,19 +1,20 @@
-export default class Even {
-  // constructor for the "Even" class
-  constructor({
+export default class Game {
+  // constructor for the "Game" class
+  constructor(
     userName,
     printMessage,
     requestUserString,
     questionsText,
-    wrongAnswerText,
-    startLevel,
+    futuresGameText,
+    level,
     endLevel,
     difficulty,
-  }) {
+    difficultyStep,
+  ) {
     // username
     this._userName = userName;
 
-    // functions for "Even" class (bin/brain-games)
+    // functions for "Game" class (bin/brain-games)
     this._printMessage = printMessage;
     this._requestUserString = requestUserString;
 
@@ -23,73 +24,83 @@ export default class Even {
     this._tryAgainText = questionsText.tryAgainText;
     this._goodAnswerText = questionsText.goodAnswerText;
     this._winText = questionsText.winText;
+    this._badAnswerText = questionsText.badAnswerText;
     this._correctly = questionsText.correctly;
     this._wrong = questionsText.wrong;
 
-    // text for games (src/unils/constants) questionsText
-    this._descriptionGameText = wrongAnswerText.descriptionGameText;
-    this._badAnswerText = wrongAnswerText.badAnswerText;
+    // futures game text (src/unils/constants) [$game-name]GameText
+    this._descriptionGameText = futuresGameText.descriptionGameText;
 
     // set start level
-    this._startLevel = startLevel;
+    this._level = level;
     // set end level
     this._endLevel = endLevel;
     // set start difficulty
     this._difficulty = difficulty;
+    // step of increasing difficulty for each new level
+    this._difficultyStep = difficultyStep;
   }
 
-  // get random number 0 or N (N < max)
-  _getRandomInt = () => Math.floor(Math.random() * this._difficulty);
+  // MAIN FUNCTIONS START
+  // print question
+  _printQuestion = () => {
+    this._printMessage(`${this._questionText}${this._question}`);
+  };
 
-  // get correct answer - number is even ?
-  _isEven = () => this._randomNumber % 2 === 0;
+  // print request answer
+  _printRequestAnswer = () => {
+    this._userAnswer = this._requestUserString.question(this._answerText);
+  };
+
+  // check user answer
+  _checkUserAnswer = () => {
+    if (this._checkAnswer()) this._levelCompleted();
+    else this._levelFailed();
+  };
+  // MAIN FUNCTIONS END
+
+  // HELPER INTERNAL FUNCTIONS START
+  // get random number 0 or N (N < max)
+  _getRandomInt = (max) => {
+    this._randomNumber = Math.floor(Math.random() * max);
+    return this._randomNumber;
+  };
 
   // check user answer
   _checkAnswer = () => this._correctAnswer === this._userAnswer;
 
   // check user answer
-  _checkEndGame = () => this._startLevel === this._endLevel;
+  _checkEndGame = () => this._level === this._endLevel;
 
   // level successfully completed
   _levelCompleted() {
     this._printMessage(this._goodAnswerText);
-    this._startLevel += 1;
-    this._difficulty *= 10;
+    this._level += 1;
+    this._difficulty *= this._difficultyStep;
   }
 
   // level failed, game over!
   _levelFailed() {
     this._printMessage(`'${this._userAnswer}'${this._badAnswerText}'${this._correctAnswer}'.\n${this._tryAgainText}${this._userName}`);
-    this._startLevel = 4;
+    this._level = this._endLevel + 1;
   }
 
   // game successfully completed
   _gameCompleted() {
     this._printMessage(`${this._winText}${this._userName}`);
   }
+  // HELPER INTERNAL FUNCTIONS END
 
-  // start game
-  startEvenGame() {
+  // START GAME
+  _startGame(functions) {
     // print game description
     this._printMessage(this._descriptionGameText);
 
     // main logig game
-    for (; this._startLevel < this._endLevel;) {
-      // get random number
-      this._randomNumber = this._getRandomInt();
-
-      // get correct answer
-      this._correctAnswer = this._isEven() ? this._correctly : this._wrong;
-
-      // print question
-      this._printMessage(`${this._questionText}${this._randomNumber}`);
-
-      // print request answer
-      this._userAnswer = this._requestUserString.question(this._answerText);
-
-      // check user answer
-      if (this._checkAnswer()) this._levelCompleted();
-      else this._levelFailed();
+    for (; this._level < this._endLevel;) {
+      functions.forEach((element) => {
+        element();
+      });
     }
 
     // game successfully completed
