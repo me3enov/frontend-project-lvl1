@@ -5,17 +5,8 @@ import Game from '../Game.js';
 export default class Even extends Game {
   // constructor for the "Even" class
   constructor(parameters) {
-    super(
-      parameters.userName,
-      parameters.printMessage,
-      parameters.requestUserString,
-      parameters.questionsText,
-      parameters.futuresGameText,
-      parameters.level,
-      parameters.endLevel,
-      parameters.difficulty,
-      parameters.difficultyStep,
-    );
+    super(parameters);
+    this._parameters = parameters;
   }
 
   // GAME FEATURES (GAME EVEN) FUNCTIONS START
@@ -31,6 +22,7 @@ export default class Even extends Game {
 
   // get is even ?
   _getAnswer = () => this._randomNumber % 2 === 0;
+  // GAME FEATURES (GAME EVEN) FUNCTIONS END
 
   // INIT GAME EVEN
   gameInit = () => {

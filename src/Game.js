@@ -1,6 +1,6 @@
 export default class Game {
   // constructor for the "Game" class
-  constructor(
+  constructor({
     userName,
     printMessage,
     requestUserString,
@@ -10,7 +10,7 @@ export default class Game {
     endLevel,
     difficulty,
     difficultyStep,
-  ) {
+  }) {
     // username
     this._userName = userName;
 
@@ -49,7 +49,7 @@ export default class Game {
 
   // print request answer
   _printRequestAnswer = () => {
-    this._userAnswer = this._requestUserString.question(this._answerText);
+    this._userAnswer = this._requestUserString.question(this._answerText).toLowerCase();
   };
 
   // check user answer

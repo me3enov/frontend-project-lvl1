@@ -5,52 +5,45 @@ import Game from '../Game.js';
 export default class Calc extends Game {
   // constructor for the "Calc" class
   constructor(parameters) {
-    super(
-      parameters.userName,
-      parameters.printMessage,
-      parameters.requestUserString,
-      parameters.questionsText,
-      parameters.futuresGameText,
-      parameters.level,
-      parameters.endLevel,
-      parameters.difficulty,
-      parameters.difficultyStep,
-    );
+    super(parameters);
+    this._operators = ['+', '-', '*'];
   }
 
   // GAME FEATURES (GAME CALC) FUNCTIONS START
-  // get question for calc game
-  _getRandomSign = () => this._getRandomInt(3);
+  // get random operator
+  _getRandomOperator = () => this._operators[this._getRandomInt(this._operators.length)];
 
   // get question for calc game
   _getQuestion = () => {
     this._valueA = this._getRandomInt(this._difficulty);
     this._valueB = this._getRandomInt(this._difficulty);
-    this._valueSing = this._getRandomSign();
-    switch (this._valueSing) {
-      case 0:
-        this._question = `${this._valueA} - ${this._valueB}`;
-        this._correctAnswer = (this._valueA - this._valueB).toString();
+    this._operator = this._getRandomOperator();
+    this._question = `${this._valueA} ${this._operator} ${this._valueB}`;
+  };
+
+  // // get correct answer
+  _getCorrectAnswer = () => {
+    switch (this._operator) {
+      case '+':
+        this._correctAnswer = String(this._valueA + this._valueB);
         break;
-      case 1:
-        this._question = `${this._valueA} + ${this._valueB}`;
-        this._correctAnswer = (this._valueA + this._valueB).toString();
+      case '-':
+        this._correctAnswer = String(this._valueA - this._valueB);
         break;
-      case 2:
-        this._question = `${this._valueA} * ${this._valueB}`;
-        this._correctAnswer = (this._valueA * this._valueB).toString();
+      case '*':
+        this._correctAnswer = String(this._valueA * this._valueB);
         break;
       default:
-        this._question = `${this._valueA} + ${this._valueB}`;
-        this._correctAnswer = (this._valueA + this._valueB).toString();
+        break;
     }
   };
 
-  // INIT GAME EVEN
+  // INIT GAME CALC
   gameInit = () => {
     // config for game
     this._configGame = [
       this._getQuestion,
+      this._getCorrectAnswer,
       this._printQuestion,
       this._printRequestAnswer,
       this._checkUserAnswer];

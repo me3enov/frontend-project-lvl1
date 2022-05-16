@@ -30,3 +30,7 @@ export const evenGameText = {
 export const calcGameText = {
   descriptionGameText: 'What is the result of the expression?',
 };
+
+export const gcdGameText = {
+  descriptionGameText: 'Find the greatest common divisor of given numbers.',
+};
