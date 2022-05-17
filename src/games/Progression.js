@@ -9,7 +9,7 @@ export default class Progression extends Game {
     this._parameters = parameters;
   }
 
-  // GAME FEATURES (GAME Progression) FUNCTIONS START
+  // GAME FEATURES (GAME PROGRESSION) FUNCTIONS START
   // get sequence for progression game
   _getSequence = () => {
     let value = this._getRandomInt(1, this._difficulty);
@@ -36,7 +36,7 @@ export default class Progression extends Game {
     this._correctAnswer = String(this._emptyItem);
   };
 
-  // INIT GAME GCD
+  // INIT GAME PROGRESSION
   gameInit = () => {
     // config for game
     this._configGame = [

@@ -17,11 +17,16 @@ export default class Even extends Game {
 
   // get correct answer
   _getCorrectAnswer = () => {
-    this._correctAnswer = this._isEven() ? this._correctly : this._wrong;
+    this._correctAnswer = this._isPrime() ? this._correctly : this._wrong;
   };
 
   // get is even ?
-  _isEven = () => this._randomNumber % 2 === 0;
+  _isPrime = () => {
+    for (let i = 2, s = Math.sqrt(this._randomNumber); i <= s; i += 1) {
+      if (this._randomNumber % i === 0) return false;
+    }
+    return this._randomNumber > 1;
+  };
   // GAME FEATURES (GAME EVEN) FUNCTIONS END
 
   // INIT GAME EVEN

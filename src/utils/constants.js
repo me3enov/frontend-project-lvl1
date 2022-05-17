@@ -38,3 +38,7 @@ export const gcdGameText = {
 export const progressionGameText = {
   descriptionGameText: 'What number is missing in the progression?',
 };
+
+export const primeGameText = {
+  descriptionGameText: `Answer "${questionsText.correctly}" if given number is prime. Otherwise answer "${questionsText.wrong}".`,
+};
