@@ -12,8 +12,8 @@ export default class Gcd extends Game {
   // GAME FEATURES (GAME GCD) FUNCTIONS START
   // get question for gcd game
   _getQuestion = () => {
-    this._valueA = this._getRandomInt(this._difficulty);
-    this._valueB = this._getRandomInt(this._difficulty);
+    this._valueA = this._getRandomInt(1, this._difficulty);
+    this._valueB = this._getRandomInt(1, this._difficulty);
     this._question = `${this._valueA} ${this._valueB}`;
   };
 

@@ -34,3 +34,7 @@ export const calcGameText = {
 export const gcdGameText = {
   descriptionGameText: 'Find the greatest common divisor of given numbers.',
 };
+
+export const progressionGameText = {
+  descriptionGameText: 'What number is missing in the progression?',
+};

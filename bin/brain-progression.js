@@ -1,5 +1,5 @@
 // IMPORT MODULES START
-import Calc from '../src/games/Calc.js';
+import Progression from '../src/games/Progression.js';
 
 import {
   userName,
@@ -9,17 +9,17 @@ import {
 
 import {
   questionsText,
-  calcGameText,
+  progressionGameText,
 } from '../src/utils/constants.js';
 // IMPORT MODULES END
 
 // is even game init
-const calcGame = new Calc({
+const progressionGame = new Progression({
   userName,
   printMessage,
   requestUserString,
   questionsText,
-  futuresGameText: calcGameText,
+  futuresGameText: progressionGameText,
   level: 0,
   endLevel: 3,
   // difficulty = max random number
@@ -29,4 +29,4 @@ const calcGame = new Calc({
 });
 
 // start game
-calcGame.gameInit();
+progressionGame.gameInit();

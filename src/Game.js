@@ -61,10 +61,10 @@ export default class Game {
 
   // HELPER INTERNAL FUNCTIONS START
   // get random number 0 or N (N < max)
-  _getRandomInt = (max) => {
-    this._randomNumber = Math.floor(Math.random() * max);
+  _getRandomInt(min, max) {
+    this._randomNumber = Math.floor(min + Math.random() * (max + 1 - min));
     return this._randomNumber;
-  };
+  }
 
   // check user answer
   _checkAnswer = () => this._correctAnswer === this._userAnswer;

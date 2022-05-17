@@ -11,12 +11,12 @@ export default class Calc extends Game {
 
   // GAME FEATURES (GAME CALC) FUNCTIONS START
   // get random operator
-  _getRandomOperator = () => this._operators[this._getRandomInt(this._operators.length)];
+  _getRandomOperator = () => this._operators[this._getRandomInt(0, this._operators.length - 1)];
 
   // get question for calc game
   _getQuestion = () => {
-    this._valueA = this._getRandomInt(this._difficulty);
-    this._valueB = this._getRandomInt(this._difficulty);
+    this._valueA = this._getRandomInt(1, this._difficulty);
+    this._valueB = this._getRandomInt(1, this._difficulty);
     this._operator = this._getRandomOperator();
     this._question = `${this._valueA} ${this._operator} ${this._valueB}`;
   };

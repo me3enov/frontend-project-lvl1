@@ -12,7 +12,7 @@ export default class Even extends Game {
   // GAME FEATURES (GAME EVEN) FUNCTIONS START
   // get question for even game
   _getQuestion = () => {
-    this._question = this._getRandomInt(this._difficulty);
+    this._question = this._getRandomInt(1, this._difficulty);
   };
 
   // get correct answer
